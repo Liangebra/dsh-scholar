@@ -1,0 +1,24 @@
+# dsh-scholar bundle patch
+#
+# 安装方式（用户侧）：dsh plugin add dsh-scholar
+# 本 patch 在 profile 组合里插入一条 host 行，把本包的三个模型工具
+# （arxiv_search / scholar_fetch / journal_lookup）注册到 host 的 tools 注册表，
+# 所有会话都能看到。
+#
+# 注意：这三个工具只在「网络可达」时才有用。proxy 默认空（直连）；
+# 国内访问 arXiv/OpenAlex/境外论文站时，把 proxy 设成本机 Clash 混合端口即可，
+# 例如 http://127.0.0.1:7890
+
+- insert:
+    - id: scholar
+      name: 'dsh-scholar'
+      config:
+        # 三个工具开关，默认全开
+        arxiv: true
+        fetch: true
+        journal: true
+        # 出网代理，空 = 直连；例：http://127.0.0.1:7890
+        proxy: ''
+        # 单次抓取/检索的超时预算（毫秒）
+        fetchTimeoutMs: 30000
+        arxivMaxResults: 8
