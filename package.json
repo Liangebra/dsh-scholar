@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "@deepseek-ai/schemastery": "^3.18.1",
+    "he": "^1.2.0",
     "undici": "^6.19.0",
     "unpdf": "^1.8.1"
   }
